@@ -26,6 +26,4 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'migrate'
-    url: 'jdbc:sqlite:https://github.com/Steven-Rummler/temp/blob/master/demo.db'
-    user: 'steven'
-    password: 'ThisIsAStrongPassword'
+    url: 'jdbc:sqlite:https://github.com/Steven-Rummler/temp/blob/master/demo.db?raw=true'
