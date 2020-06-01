@@ -1,4 +1,7 @@
 # Starter pipeline
+- task: FlywayInstaller@0
+  inputs:
+    flywayVersion: '6.2.0'
 - task: FlywayCLI@0
   inputs:
     command: 'migrate'
