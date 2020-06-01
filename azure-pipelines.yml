@@ -17,19 +17,19 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'clean'
-    url: 'jdbc:sqlite:demo.db'
+    url: 'jdbc:sqlite:demo-dev.db'
 
 - task: FlywayCLI@0
   inputs:
     command: 'info'
-    url: 'jdbc:sqlite:demo.db'
+    url: 'jdbc:sqlite:demo-dev.db'
 
 - task: FlywayCLI@0
   inputs:
     command: 'migrate'
-    url: 'jdbc:sqlite:demo.db'
+    url: 'jdbc:sqlite:demo-dev.db'
 
 - task: FlywayCLI@0
   inputs:
     command: 'info'
-    url: 'jdbc:sqlite:demo.db'
+    url: 'jdbc:sqlite:demo-dev.db'
