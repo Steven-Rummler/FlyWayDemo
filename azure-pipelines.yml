@@ -18,7 +18,7 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'clean'
-    url: 'jdbc:sqlite:stevenrummler.com:80/demo-dev.db'
+    url: 'jdbc:sqlite:\\\\stevenrummler.com\\demo-dev.db'
 
 - task: FlywayCLI@0
   inputs:
