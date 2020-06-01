@@ -1,5 +1,6 @@
 # FlyWayDB Demo Pipeline
 
+
 trigger:
 - master
 
@@ -33,3 +34,9 @@ steps:
   inputs:
     command: 'info'
     url: 'jdbc:sqlite:demo-dev.db'
+    
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
