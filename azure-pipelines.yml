@@ -34,9 +34,3 @@ steps:
   inputs:
     command: 'info'
     url: 'jdbc:sqlite://stevenrummler.com:80/demo-dev.db'
-    
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
