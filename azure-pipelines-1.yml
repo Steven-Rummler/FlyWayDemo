@@ -1,8 +1,5 @@
 # Migrate Prod DB to latest
 
-trigger:
-- master
-
 pool:
   vmImage: 'ubuntu-latest'
 
