@@ -1,6 +1,5 @@
 # FlyWayDB Demo Pipeline
 
-
 trigger:
 - master
 
@@ -9,7 +8,7 @@ pool:
 
 steps:
 - script: echo FlyWayDB on Azure DevOps Demo
-  displayName: 'Intro'
+  displayName: 'Connect to Database and Report Status'
 
 - task: FlywayInstaller@0
   inputs:
@@ -17,20 +16,7 @@ steps:
 
 - task: FlywayCLI@0
   inputs:
-    command: 'clean'
-    url: 'jdbc:sqlite:\\\\stevenrummler.com\\demo-dev.db'
-
-- task: FlywayCLI@0
-  inputs:
     command: 'info'
-    url: 'jdbc:sqlite:\\\\stevenrummler.com\\demo-dev.db'
-
-- task: FlywayCLI@0
-  inputs:
-    command: 'migrate'
-    url: 'jdbc:sqlite:\\\\stevenrummler.com:80\\demo-dev.db'
-
-- task: FlywayCLI@0
-  inputs:
-    command: 'info'
-    url: 'jdbc:sqlite:\\\\stevenrummler.com:80\\demo-dev.db'
+    url: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
+    user: stevenru_admin
+    password: ThisIsAStrongPassword

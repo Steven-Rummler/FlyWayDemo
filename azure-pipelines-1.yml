@@ -1,10 +1,13 @@
-# Migrate Prod DB to latest
+# Migrate Database to Latest
+
+trigger:
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Migrating prod db to latest version
+- script: echo Migrating Database
   displayName: 'Intro'
 
 - task: FlywayInstaller@0
@@ -14,9 +17,13 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'migrate'
-    url: 'jdbc:sqlite:demo-prod.db'
+    url: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
+    user: stevenru_admin
+    password: ThisIsAStrongPassword
 
 - task: FlywayCLI@0
   inputs:
     command: 'info'
-    url: 'jdbc:sqlite:demo-prod.db'
+    url: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
+    user: stevenru_admin
+    password: ThisIsAStrongPassword
