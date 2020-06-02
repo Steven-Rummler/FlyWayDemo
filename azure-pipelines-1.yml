@@ -14,9 +14,13 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'migrate'
-    url: 'jdbc:sqlite:demo-prod.db'
+    url: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
+    user: steveru_admin
+    password: ThisIsAStrongPassword
 
 - task: FlywayCLI@0
   inputs:
     command: 'info'
-    url: 'jdbc:sqlite:demo-prod.db'
+    url: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
+    user: steveru_admin
+    password: ThisIsAStrongPassword
