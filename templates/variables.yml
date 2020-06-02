@@ -1,2 +1,2 @@
 variables:
-  connection_string: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo
+  connection_string: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
