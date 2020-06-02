@@ -17,6 +17,6 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'info'
-    url: 'jdbc:mysql:\\\\stevenrummler.com:'
+    url: 'jdbc:mysql:\\\\stevenrummler.com:3306'
     user: stevenru_admin
     password: ThisIsAStrongPassword
