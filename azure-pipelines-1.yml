@@ -1,10 +1,13 @@
-# Migrate Prod DB to latest
+# Migrate Database to Latest
+
+trigger:
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Migrating prod db to latest version
+- script: echo Migrating Database
   displayName: 'Intro'
 
 - task: FlywayInstaller@0
