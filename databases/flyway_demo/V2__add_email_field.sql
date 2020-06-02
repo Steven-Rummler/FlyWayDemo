@@ -1,2 +1,2 @@
 ALTER TABLE users
-ADD email varchar(50);
+ADD email_address varchar(50);
