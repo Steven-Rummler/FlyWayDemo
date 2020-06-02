@@ -16,6 +16,13 @@ steps:
 
 - task: FlywayCLI@0
   inputs:
+    command: 'clean'
+    url: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
+    user: stevenru_admin
+    password: ThisIsAStrongPassword
+
+- task: FlywayCLI@0
+  inputs:
     command: 'migrate'
     url: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
     user: stevenru_admin
