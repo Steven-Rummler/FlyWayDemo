@@ -8,6 +8,7 @@ pool:
 
 variables:
 - template: templates/variables.yml
+- group: MySQL Credentials
 
 steps:
 - script: echo Migrating Database
@@ -21,19 +22,19 @@ steps:
   inputs:
     command: 'clean'
     url: ${{variables.connection_string}}
-    user: $(user)
-    password: $(password)
+    user: $(variables.user)
+    password: $(variables.password)
 
 - task: FlywayCLI@0
   inputs:
     command: 'migrate'
     url: ${{variables.connection_string}}
-    user: $(user)
-    password: $(password)
+    user: $(variables.user)
+    password: $(variables.password)
 
 - task: FlywayCLI@0
   inputs:
     command: 'info'
     url: ${{variables.connection_string}}
-    user: $(user)
-    password: $(password)
+    user: $(variables.user)
+    password: $(variables.password)
