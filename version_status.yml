@@ -6,6 +6,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+- template: templates/variables.yml
+
 steps:
 - script: echo FlyWayDB on Azure DevOps Demo
   displayName: 'Connect to Database and Report Status'

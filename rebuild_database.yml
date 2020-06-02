@@ -6,6 +6,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+- template: templates/variables.yml
+
 steps:
 - script: echo Migrating Database
   displayName: 'Intro'
