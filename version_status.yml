@@ -20,6 +20,6 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'info'
-    url: $(connection_string)
+    url: $(variables.connection_string)
     user: $(user)
     password: $(password)
