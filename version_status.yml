@@ -8,6 +8,7 @@ pool:
 
 variables:
 - template: templates/variables.yml
+- group: MySQL Credentials
 
 steps:
 - script: echo FlyWayDB on Azure DevOps Demo
