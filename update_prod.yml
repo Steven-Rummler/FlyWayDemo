@@ -8,6 +8,7 @@ pool:
 
 variables:
 - template: templates/variables.yml
+- group: MySQL Admin Credentials
 
 steps:
 - script: echo Updating Prod Database

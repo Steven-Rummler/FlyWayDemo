@@ -8,10 +8,11 @@ pool:
 
 variables:
 - template: templates/variables.yml
+- group: MySQL Admin Credentials
 
 steps:
 - script: echo Getting Flyway Status for Databases
-  displayName: 'Connect to Databases and Report FlyWay Status'
+  displayName: 'Description'
 
 - task: FlywayInstaller@0
   inputs:

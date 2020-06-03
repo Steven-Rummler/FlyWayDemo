@@ -8,7 +8,7 @@ pool:
 
 variables:
 - template: templates/variables.yml
-- group: MySQL Credentials
+- group: MySQL Admin Credentials
 
 steps:
 - script: echo Rebuilding Dev Database
