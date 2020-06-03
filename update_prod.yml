@@ -10,13 +10,14 @@ variables:
 - template: templates/variables.yml
 - group: MySQL Admin Credentials
 
+steps:
 - task: FlywayInstaller@0
   inputs:
     flywayVersion: '6.2.0'
 
 - task: FlywayCLI@0
   inputs:
-    command: 'repair'
+    command: 'info'
     url: ${{variables.prod_database}}
     user: $(user)
     password: $(password)

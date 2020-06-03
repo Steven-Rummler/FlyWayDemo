@@ -10,6 +10,7 @@ variables:
 - template: templates/variables.yml
 - group: MySQL Admin Credentials
 
+steps:
 - task: FlywayInstaller@0
   inputs:
     flywayVersion: '6.2.0'
