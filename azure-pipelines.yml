@@ -16,7 +16,6 @@ steps:
     url: '$(variables.baseline_database)'
     user: '$(user)'
     password: '$(password)'
-    commandOptions: 'baselineVersion=0'
 
 - task: FlywayCLI@0
   inputs:
