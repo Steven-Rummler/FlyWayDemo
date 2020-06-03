@@ -13,7 +13,7 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'baseline'
-    url: '$(variables.baseline_database)'
+    url: '${{variables.baseline_database}}'
     user: '$(user)'
     password: '$(password)'
 
