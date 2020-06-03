@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -18,10 +19,10 @@ steps:
 - task: FlywayCLI@0
   inputs:
     command: 'baseline'
-    url: ${{variables.baseline_database}}
-    user: $(user)
-    password: $(password)
-    baselineVersion: -1
+    url: '$(variables.baseline_database)'
+    user: '$(user)'
+    password: '$(password)'
+    commandOptions: 'baselineVersion: -1'
 
 - task: FlywayCLI@0
   inputs:
