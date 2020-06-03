@@ -1,0 +1,46 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- template: templates/variables.yml
+- group: MySQL Admin Credentials
+
+steps:
+- task: FlywayInstaller@0
+  inputs:
+    flywayVersion: '6.2.0'
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'baseline'
+    url: '$(variables.baseline_database)'
+    user: '$(user)'
+    password: '$(password)'
+    commandOptions: 'baselineVersion=-1'
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'info'
+    url: ${{variables.baseline_database}}
+    user: $(user)
+    password: $(password)
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'migrate'
+    url: ${{variables.baseline_database}}
+    user: $(user)
+    password: $(password)
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'info'
+    url: ${{variables.baseline_database}}
+    user: $(user)
+    password: $(password)
