@@ -16,7 +16,7 @@ variables:
 
 - task: FlywayCLI@0
   inputs:
-    command: 'info'
+    command: 'repair'
     url: ${{variables.prod_database}}
     user: $(user)
     password: $(password)
