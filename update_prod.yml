@@ -17,12 +17,6 @@ steps:
 - task: FlywayInstaller@0
   inputs:
     flywayVersion: '6.2.0'
-- task: FlywayCLI@0
-  inputs:
-    command: 'clean'
-    url: ${{variables.prod_database}}
-    user: $(user)
-    password: $(password)
 
 - task: FlywayCLI@0
   inputs:
