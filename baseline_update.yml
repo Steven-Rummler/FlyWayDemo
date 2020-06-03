@@ -17,6 +17,13 @@ steps:
 
 - task: FlywayCLI@0
   inputs:
+    command: 'repair'
+    url: ${{variables.baseline_database}}
+    user: $(user)
+    password: $(password)
+
+- task: FlywayCLI@0
+  inputs:
     command: 'info'
     url: ${{variables.baseline_database}}
     user: $(user)
