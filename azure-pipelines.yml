@@ -22,7 +22,7 @@ steps:
     url: '$(variables.baseline_database)'
     user: '$(user)'
     password: '$(password)'
-    commandOptions: 'baselineVersion: -1'
+    commandOptions: 'baselineVersion=-1'
 
 - task: FlywayCLI@0
   inputs:
