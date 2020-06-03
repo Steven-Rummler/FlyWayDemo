@@ -10,10 +10,6 @@ variables:
 - template: templates/variables.yml
 - group: MySQL Admin Credentials
 
-steps:
-- script: echo Updating Prod Database
-  displayName: 'Description'
-
 - task: FlywayInstaller@0
   inputs:
     flywayVersion: '6.2.0'
