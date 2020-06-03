@@ -1,0 +1,39 @@
+# Rebuild Dev Database
+
+trigger:
+- dev
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- template: templates/variables.yml
+
+steps:
+- script: echo Rebuilding Dev Database
+  displayName: 'Description'
+
+- task: FlywayInstaller@0
+  inputs:
+    flywayVersion: '6.2.0'
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'clean'
+    url: ${{variables.dev_database}}
+    user: $(user)
+    password: $(password)
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'migrate'
+    url: ${{variables.dev_database}}
+    user: $(user)
+    password: $(password)
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'info'
+    url: ${{variables.dev_database}}
+    user: $(user)
+    password: $(password)

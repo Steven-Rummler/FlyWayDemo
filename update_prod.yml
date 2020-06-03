@@ -1,4 +1,4 @@
-# Migrate Database to Latest
+# Update Prod Database
 
 trigger:
 - master
@@ -10,8 +10,8 @@ variables:
 - template: templates/variables.yml
 
 steps:
-- script: echo Migrating Database
-  displayName: 'Intro'
+- script: echo Updating Prod Database
+  displayName: 'Description'
 
 - task: FlywayInstaller@0
   inputs:
@@ -19,21 +19,21 @@ steps:
 
 - task: FlywayCLI@0
   inputs:
-    command: 'clean'
-    url: ${{variables.connection_string}}
+    command: 'info'
+    url: ${{variables.prod_database}}
     user: $(user)
     password: $(password)
 
 - task: FlywayCLI@0
   inputs:
     command: 'migrate'
-    url: ${{variables.connection_string}}
+    url: ${{variables.prod_database}}
     user: $(user)
     password: $(password)
 
 - task: FlywayCLI@0
   inputs:
     command: 'info'
-    url: ${{variables.connection_string}}
+    url: ${{variables.prod_database}}
     user: $(user)
     password: $(password)

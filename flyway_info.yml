@@ -1,0 +1,32 @@
+# Get FlyWay Status for Databases
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- template: templates/variables.yml
+
+steps:
+- script: echo Getting Flyway Status for Databases
+  displayName: 'Connect to Databases and Report FlyWay Status'
+
+- task: FlywayInstaller@0
+  inputs:
+    flywayVersion: '6.2.0'
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'info'
+    url: ${{variables.dev_database}}
+    user: $(user)
+    password: $(password)
+
+- task: FlywayCLI@0
+  inputs:
+    command: 'info'
+    url: ${{variables.prod_database}}
+    user: $(user)
+    password: $(password)
