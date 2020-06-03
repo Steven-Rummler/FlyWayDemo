@@ -1,6 +1,7 @@
 # Get FlyWay Status for Databases
 
 trigger:
+- dev
 - master
 
 pool:
