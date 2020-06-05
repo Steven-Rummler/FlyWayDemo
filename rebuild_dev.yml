@@ -1,37 +1,68 @@
 # Rebuild Dev Database
 
+name: 'Dev Pipeline'
 trigger:
-- dev
-
-pool:
-  vmImage: 'ubuntu-latest'
-
+- master
 variables:
 - template: templates/variables.yml
 - group: MySQL Admin Credentials
-
-steps:
-- task: FlywayInstaller@0
-  inputs:
-    flywayVersion: '6.2.0'
-
-- task: FlywayCLI@0
-  inputs:
-    command: 'clean'
-    url: ${{variables.dev_database}}
-    user: $(user)
-    password: $(password)
-
-- task: FlywayCLI@0
-  inputs:
-    command: 'migrate'
-    url: ${{variables.dev_database}}
-    user: $(user)
-    password: $(password)
-
-- task: FlywayCLI@0
-  inputs:
-    command: 'info'
-    url: ${{variables.dev_database}}
-    user: $(user)
-    password: $(password)
+stages: 
+  - stage: string  # name of the stage (A-Z, a-z, 0-9, and underscore)
+    displayName: string  # friendly name to display in the UI
+    jobs:
+    # Confirm that the published files result in a successful migration
+    - job:
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+      - task: FlywayInstaller@0
+        inputs:
+          flywayVersion: '6.2.0'
+      - task: FlywayCLI@0
+        inputs:
+          command: 'clean'
+          url: ${{variables.dev_database}}
+          user: $(user)
+          password: $(password)
+      - task: FlywayCLI@0
+        inputs:
+          command: 'migrate'
+          url: ${{variables.dev_database}}
+          user: $(user)
+          password: $(password)
+      - task: FlywayCLI@0
+        inputs:
+          command: 'info'
+          url: ${{variables.dev_database}}
+          user: $(user)
+          password: $(password)
+    # Publish sql files from the GitHub repository as a pipeline artifact
+    - job:
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+      - task: GitClone@2
+        inputs:
+          RepositoryURL: 'https://flywaydbdemo@dev.azure.com/flywaydbdemo/FlyWayDBDemo/_git/FlyWayDBDemo'
+          Branch: 'master'
+          FallbackBranch: 'master'
+          BaseBranch: 'master'
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Pipeline.Workspace)/FlyWayDBDemo/databases/flyway_demo'
+          artifact: 'migrations'
+          publishLocation: 'pipeline'
+    # Send the resulting artifact to the VM
+    - deployment: VMDeploy
+      displayName: web
+      environment:
+        name:  FlyWayDemo
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                buildType: 'current'
+                artifactName: 'migrations'
+                targetPath: '~/flyway-6.4.3/sql'
