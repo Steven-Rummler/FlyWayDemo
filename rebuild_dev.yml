@@ -59,7 +59,7 @@ stages:
             ls
       - task: PublishPipelineArtifact@1
         inputs:
-          targetPath: '$(Pipeline.Workspace)/databases/flyway_demo'
+          targetPath: '$(Pipeline.Workspace)/s/databases/flyway_demo'
           artifact: 'migrations'
           publishLocation: 'pipeline'
     # Send the resulting artifact to the VM
