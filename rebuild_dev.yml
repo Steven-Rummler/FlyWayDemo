@@ -47,6 +47,12 @@ stages:
           targetType: 'inline'
           script: |
             git clone https://username:rv5pwmgvwvsvie2mft75fx3izx4fa2r2e42jra34mxdsnerl2j2a@dev.azure.com/flywaydbdemo/FlyWayDBDemo/_git/FlyWayDBDemo
+            ls
+            cd FlyWayDBDemo
+            ls
+            cd databases
+            ls
+            cd flyway_demo
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(Pipeline.Workspace)/FlyWayDBDemo/databases/flyway_demo'
