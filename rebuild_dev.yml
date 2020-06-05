@@ -42,12 +42,11 @@ stages:
       pool:
         vmImage: 'windows-latest'
       steps:
-      - task: GitClone@2
+      - task: Bash@3
         inputs:
-          RepositoryURL: 'https://username:rv5pwmgvwvsvie2mft75fx3izx4fa2r2e42jra34mxdsnerl2j2a@dev.azure.com/flywaydbdemo/FlyWayDBDemo/_git/FlyWayDBDemo'
-          Branch: 'master'
-          FallbackBranch: 'master'
-          BaseBranch: 'master'
+          targetType: 'inline'
+          script: |
+            git clone https://username:rv5pwmgvwvsvie2mft75fx3izx4fa2r2e42jra34mxdsnerl2j2a@dev.azure.com/flywaydbdemo/FlyWayDBDemo/_git/FlyWayDBDemo
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(Pipeline.Workspace)/FlyWayDBDemo/databases/flyway_demo'
