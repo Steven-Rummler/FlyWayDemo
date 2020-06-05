@@ -39,7 +39,7 @@ stages:
     # Publish sql files from the GitHub repository as a pipeline artifact
     - job:
       pool:
-        vmImage: 'ubuntu-latest'
+        vmImage: 'windows'
       steps:
       - task: GitClone@2
         inputs:
