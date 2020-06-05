@@ -47,13 +47,15 @@ stages:
           targetType: 'inline'
           script: |
             git clone https://username:rv5pwmgvwvsvie2mft75fx3izx4fa2r2e42jra34mxdsnerl2j2a@dev.azure.com/flywaydbdemo/FlyWayDBDemo/_git/FlyWayDBDemo
-            echo "Initial Directory"
+            echo "----In this directory-----"
+            pwd
+            echo "-----Initial Directory-----"
             ls
             cd databases
-            echo "One step in"
+            echo "----One step in----"
             ls
             cd flyway_demo
-            echo "Here are the files"
+            echo "----Here are the files---"
             ls
       - task: PublishPipelineArtifact@1
         inputs:
