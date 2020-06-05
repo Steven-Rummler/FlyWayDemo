@@ -11,7 +11,7 @@ stages:
     displayName: string  # friendly name to display in the UI
     jobs:
     # Confirm that the published files result in a successful migration
-    - job:
+    - job: 'Test_Migration'
       pool:
         vmImage: 'ubuntu-latest'
       steps:
@@ -37,7 +37,8 @@ stages:
           user: $(user)
           password: $(password)
     # Publish sql files from the GitHub repository as a pipeline artifact
-    - job:
+    - job: 'Create_Artifact'
+      dependsOn: 'Test_Migration'
       pool:
         vmImage: 'windows-latest'
       steps:
@@ -54,6 +55,7 @@ stages:
           publishLocation: 'pipeline'
     # Send the resulting artifact to the VM
     - deployment: VMDeploy
+      dependsOn: 'Create_Artifact'
       displayName: web
       environment:
         name:  FlyWayDemo
