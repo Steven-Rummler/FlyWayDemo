@@ -43,7 +43,7 @@ stages:
       steps:
       - task: GitClone@2
         inputs:
-          RepositoryURL: 'https://rv5pwmgvwvsvie2mft75fx3izx4fa2r2e42jra34mxdsnerl2j2a@flywaydbdemo@dev.azure.com/flywaydbdemo/FlyWayDBDemo/_git/FlyWayDBDemo'
+          RepositoryURL: 'https://rv5pwmgvwvsvie2mft75fx3izx4fa2r2e42jra34mxdsnerl2j2a@dev.azure.com/flywaydbdemo/FlyWayDBDemo/_git/FlyWayDBDemo'
           Branch: 'master'
           FallbackBranch: 'master'
           BaseBranch: 'master'
