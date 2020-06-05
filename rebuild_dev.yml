@@ -57,23 +57,31 @@ stages:
             cd flyway_demo
             echo "----Here are the files---"
             ls
-      - task: PublishPipelineArtifact@1
+      - task: CopyFilesOverSSH@0
         inputs:
-          targetPath: '$(Pipeline.Workspace)/s/databases/flyway_demo'
-          artifact: 'migrations'
-          publishLocation: 'pipeline'
+          sshEndpoint: 'FlyWayDemo'
+          sourceFolder: '$(Pipeline.Workspace)/s/databases/flyway_demo'
+          contents: '**'
+          targetFolder: '~/flyway-6.4.3/sql'
+          readyTimeout: '20000'
+      # - task: PublishPipelineArtifact@1
+      #   inputs:
+      #     targetPath: ''
+      #     artifact: 'migrations'
+      #     publishLocation: 'pipeline'
     # Send the resulting artifact to the VM
-    - deployment: VMDeploy
-      dependsOn: 'Create_Artifact'
-      displayName: web
-      environment:
-        name:  FlyWayDemo
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - task: DownloadPipelineArtifact@2
-              inputs:
-                buildType: 'current'
-                artifactName: 'migrations'
-                targetPath: '~/flyway-6.4.3/sql'
+    # - deployment: VMDeploy
+    #   dependsOn: 'Create_Artifact'
+    #   displayName: web
+    #   environment:
+    #     name:  FlyWayDemo
+    #     resourceType: VirtualMachine
+    #   strategy:
+    #     runOnce:
+    #       deploy:
+    #         steps:
+    #         - task: DownloadPipelineArtifact@2
+    #           inputs:
+    #             buildType: 'current'
+    #             artifactName: 'migrations'
+    #             targetPath: '~/flyway-6.4.3/sql'
