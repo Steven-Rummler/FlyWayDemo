@@ -1,4 +1,0 @@
-variables:
-  dev_database: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo_Dev'
-  prod_database: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo'
-  baseline_database: 'jdbc:mysql://stevenrummler.com:3306/stevenru_FlyWayDemo_Baselined'
