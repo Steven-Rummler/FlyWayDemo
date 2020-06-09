@@ -1,2 +1,2 @@
-ALTER TABLE users
+ALTER TABLE lobbyists
 ADD email varchar(50);
